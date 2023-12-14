@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thank You!</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f0f0f0;
+    }
+
+    .thank-you-container {
+      text-align: center;
+      padding: 20px;
+      background-color: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      opacity: 0; /* initially hidden */
+      animation: fadeIn 1s forwards, wave 2s infinite; /* fade-in and wave animations */
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes wave {
+      0%, 100% {
+        transform: rotate(0deg);
+      }
+      25%, 75% {
+        transform: rotate(-20deg);
+      }
+      50% {
+        transform: rotate(20deg);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="thank-you-container">
+    <h1>Thank You!</h1>
+    <p>Your message has been received, and we'll get back to you shortly.</p>
+    <p>&#x1F44B;</p> <!-- Unicode waving hand character -->
+  </div>
+</body>
+</html>
