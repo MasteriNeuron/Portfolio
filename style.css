@@ -342,6 +342,52 @@ section .title::after{
     width: 75%;
 }
 
+.portfolio-section{
+    font-family: 'Poppins', sans-serif;
+    background: #f7f7f7;
+}
+.portfolio-section:nth-of-type(even){
+    background: #fff;
+}
+.portfolio-grid{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+.portfolio-card{
+    background: #fff;
+    border-radius: 6px;
+    padding: 24px;
+    border-top: 3px solid red;
+    box-shadow: 0 5px 15px rgba(0,0,0,.08);
+    transition: all .3s ease;
+}
+.portfolio-section:nth-of-type(even) .portfolio-card{
+    background: #f7f7f7;
+}
+.portfolio-card:hover{
+    transform: translateY(-5px);
+}
+.portfolio-card h3{
+    font-size: 21px;
+    margin: 8px 0;
+}
+.portfolio-card h4{
+    color: red;
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 12px;
+}
+.portfolio-card p{
+    color: #555;
+    font-size: 15px;
+}
+.portfolio-date,
+.portfolio-number{
+    color: red;
+    font-weight: 600;
+    font-size: 14px;
+}
 
 
 /* contact section styling */
@@ -531,6 +577,9 @@ footer span a:hover{
         width: 100%;
         margin-bottom: 35px;
     }
+    .portfolio-grid{
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 @media (max-width: 690px) {
@@ -548,6 +597,9 @@ footer span a:hover{
     }
     .services .serv-content .card{
         width: 100%;
+    }
+    .portfolio-grid{
+        grid-template-columns: 1fr;
     }
 }
 
