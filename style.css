@@ -10,6 +10,9 @@
 html{
     scroll-behavior: smooth;
 }
+body{
+    overflow-x: hidden;
+}
 .text-1,.text-3{
     color: #ffffff;
 }
@@ -94,7 +97,8 @@ section .title::after{
 }
 .navbar.sticky{
     padding: 15px 0;
-    background: red;
+    background: linear-gradient(90deg, #d90000, #ff3b30 55%, #d90000);
+    box-shadow: 0 4px 18px rgba(0,0,0,.2);
 }
 .navbar .max-width{
     display: flex;
@@ -126,7 +130,8 @@ section .title::after{
     transition: color 0.3s ease;
 }
 .navbar .menu li a:hover{
-    color: red;
+    color: #ffd1d1;
+    transform: translateY(-2px);
 }
 .navbar.sticky .menu li a:hover{
     color: #fff;
@@ -179,6 +184,17 @@ section .title::after{
     background-size: cover;
     background-attachment: fixed;
     font-family: 'Ubuntu', sans-serif;
+    position: relative;
+    isolation: isolate;
+}
+.home::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(120deg, rgba(0,0,0,.7), rgba(114,0,0,.28), rgba(0,0,0,.68));
+    background-size: 200% 200%;
+    animation: gradientShift 12s ease infinite;
 }
 .home .max-width{
   width: 100%;
@@ -218,6 +234,20 @@ section .title::after{
 .home .home-content a:hover{
     color: red;
     background: none;
+}
+
+.home .home-content{
+    animation: fadeUp .9s ease both;
+}
+.about .about-content .left img{
+    border: 5px solid transparent;
+    background: linear-gradient(#fff,#fff) padding-box, linear-gradient(135deg, #ff1e1e, #0873d1) border-box;
+    box-shadow: 0 14px 30px rgba(0,0,0,.18);
+    transition: transform .4s ease, box-shadow .4s ease;
+}
+.about .about-content .left img:hover{
+    transform: translateY(-8px) rotate(-2deg);
+    box-shadow: 0 22px 38px rgba(0,0,0,.25);
 }
 
 /* about section styling */
@@ -355,18 +385,21 @@ section .title::after{
     gap: 20px;
 }
 .portfolio-card{
-    background: #fff;
-    border-radius: 6px;
+    background: linear-gradient(145deg, #fff, #fff5f5);
+    border-radius: 10px;
     padding: 24px;
-    border-top: 3px solid red;
-    box-shadow: 0 5px 15px rgba(0,0,0,.08);
+    border-top: 3px solid transparent;
+    border-image: linear-gradient(90deg, red, #0873d1) 1;
+    box-shadow: 0 8px 20px rgba(0,0,0,.1);
     transition: all .3s ease;
+    animation: fadeUp .7s ease both;
 }
 .portfolio-section:nth-of-type(even) .portfolio-card{
     background: #f7f7f7;
 }
 .portfolio-card:hover{
-    transform: translateY(-5px);
+    transform: translateY(-8px) scale(1.015);
+    box-shadow: 0 16px 28px rgba(0,0,0,.16);
 }
 .portfolio-card h3{
     font-size: 21px;
@@ -384,9 +417,35 @@ section .title::after{
 }
 .portfolio-date,
 .portfolio-number{
-    color: red;
+    color: #e00000;
     font-weight: 600;
     font-size: 14px;
+}
+
+.portfolio-section .title::before{
+    background: linear-gradient(90deg, red, #0873d1);
+}
+.portfolio-section .title::after{
+    background: inherit;
+}
+.portfolio-card:nth-child(2){animation-delay:.08s}
+.portfolio-card:nth-child(3){animation-delay:.16s}
+.portfolio-card:nth-child(4){animation-delay:.24s}
+.portfolio-card:nth-child(5){animation-delay:.32s}
+.portfolio-card:nth-child(6){animation-delay:.4s}
+.portfolio-card:nth-child(7){animation-delay:.48s}
+.portfolio-card:nth-child(8){animation-delay:.56s}
+
+@keyframes fadeUp{
+    from{opacity:0;transform:translateY(22px)}
+    to{opacity:1;transform:translateY(0)}
+}
+@keyframes gradientShift{
+    0%,100%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+}
+@media (prefers-reduced-motion: reduce){
+    *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}
 }
 
 
