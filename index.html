@@ -326,16 +326,17 @@
                 </div>
                 <div class="column right">
                     <div class="text">Send a message</div>
-                    <form action="mailto:drsnchaudhary1998@gmail.com" method="post" enctype="text/plain">
+                    <form id="contact-form">
                         <div class="fields">
-                            <div class="field name"><input type="text" placeholder="Name" required></div>
-                            <div class="field email"><input type="email" placeholder="Email" required></div>
+                            <div class="field name"><input type="text" name="name" placeholder="Name" required></div>
+                            <div class="field email"><input type="email" name="email" placeholder="Email" required></div>
                         </div>
-                        <div class="field"><input type="text" placeholder="Subject" required></div>
-                        <div class="field textarea"><textarea cols="30" rows="10" placeholder="Message.." required></textarea></div>
+                        <div class="field"><input type="text" name="subject" placeholder="Subject" required></div>
+                        <div class="field textarea"><textarea name="message" cols="30" rows="10" placeholder="Message.." required></textarea></div>
                         <div class="button-area">
-                            <button type="submit">Send message</button>
+                            <button type="submit" id="submit-btn">Send message</button>
                         </div>
+                        <span class="form-status" id="form-status"></span>
                     </form>
                 </div>
             </div>
@@ -347,7 +348,7 @@
             <a href="mailto:drsnchaudhary1998@gmail.com"><i class="fa-solid fa-envelope"></i></a>
             <a href="https://github.com/MasteriNeuron" target="_blank"><i class="fa-brands fa-github"></i></a>
             <a href="https://www.linkedin.com/in/shubham-chaudhary1802/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
-            <a href="https://www.youtube.com/@master_neuron-hs6zb" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+            <a href="https://www.youtube.com/@master_neuron" target="_blank"><i class="fa-brands fa-youtube"></i></a>
         </div>
         <div class="footerbottom">
             <p>Designed &amp; built by <span><a href="https://github.com/MasteriNeuron" target="_blank">Shubham Chaudhary</a></span></p>
