@@ -116,4 +116,53 @@ $(document).ready(function(){
         });
     });
 
+    // ---- contact form — AJAX submission via Formspree ----
+    // SETUP: sign up free at https://formspree.io → create a form → paste your 8-char ID below
+    var FORMSPREE_ID = 'xljewbja';
+
+    var contactForm = document.getElementById('contact-form');
+    var submitBtn   = document.getElementById('submit-btn');
+    var formStatus  = document.getElementById('form-status');
+
+    if (contactForm) {
+        contactForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            // guard: make sure the ID has been replaced
+            if (FORMSPREE_ID === 'YOUR_FORM_ID') {
+                formStatus.className = 'form-status error';
+                formStatus.textContent = '⚠ Add your Formspree form ID to script.js to enable the form.';
+                return;
+            }
+
+            submitBtn.disabled    = true;
+            submitBtn.textContent = 'Sending…';
+            formStatus.className  = 'form-status';
+            formStatus.textContent = '';
+
+            try {
+                var res = await fetch('https://formspree.io/f/' + FORMSPREE_ID, {
+                    method: 'POST',
+                    headers: { 'Accept': 'application/json' },
+                    body: new FormData(contactForm)
+                });
+
+                if (res.ok) {
+                    formStatus.className  = 'form-status success';
+                    formStatus.textContent = '✓ Message sent — I\'ll get back to you soon!';
+                    contactForm.reset();
+                } else {
+                    var data = await res.json();
+                    throw new Error(data && data.errors ? data.errors.map(function(e){ return e.message; }).join(', ') : 'Server error');
+                }
+            } catch (err) {
+                formStatus.className  = 'form-status error';
+                formStatus.textContent = '✗ ' + err.message + '. You can also reach me at drsnchaudhary1998@gmail.com';
+            }
+
+            submitBtn.disabled    = false;
+            submitBtn.textContent = 'Send message';
+        });
+    }
+
 });
