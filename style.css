@@ -371,6 +371,14 @@ section .title{
 }
 .contact form .button-area button:hover{ box-shadow:0 14px 30px rgba(139,92,246,.35); transform:translateY(-2px); }
 
+.form-status{
+    display:block; font-size:14px; line-height:1.5;
+    margin-top:14px; min-height:20px;
+    opacity:0; transition:opacity .3s ease;
+}
+.form-status.success{ opacity:1; color:var(--accent-c); }
+.form-status.error  { opacity:1; color:var(--accent-a); }
+
 /* ============================================================
    Footer
    ============================================================ */
