@@ -80,6 +80,16 @@ section .title{
 .skills, .contact{ background:var(--bg-alt); }
 
 /* ============================================================
+   Scroll progress bar — top of viewport, fills as you scroll
+   ============================================================ */
+.scroll-progress{
+    position:fixed; top:0; left:0; height:3px; width:0%; z-index:1001;
+    background:var(--gradient); background-size:200% 100%;
+    animation:gradientShift 6s ease infinite;
+    transition:width .1s linear;
+}
+
+/* ============================================================
    Navbar
    ============================================================ */
 .navbar{
@@ -97,27 +107,40 @@ section .title{
 .navbar .max-width{ display:flex; align-items:center; justify-content:space-between; }
 .navbar .logo a{ color:var(--text); font-size:22px; font-weight:700; letter-spacing:-.02em; }
 .navbar .logo a span{
-    background:var(--gradient);
+    background:var(--gradient); background-size:200% 100%;
+    animation:gradientShift 5s ease infinite;
     -webkit-background-clip:text; background-clip:text; color:transparent;
 }
 .navbar .menu li{ list-style:none; display:inline-block; }
 .navbar .menu li a{
+    position:relative;
     display:block; color:var(--text-dim); font-size:15px; font-weight:500;
-    margin-left:34px; transition:color .25s ease;
+    margin-left:34px; padding-bottom:4px; transition:color .25s ease;
+}
+.navbar .menu li a::after{
+    content:""; position:absolute; left:0; bottom:0; height:2px; width:0;
+    background:var(--gradient); transition:width .3s ease;
 }
 .navbar .menu li a:hover{ color:var(--text); }
+.navbar .menu li a.active-link{ color:var(--text); }
+.navbar .menu li a.active-link::after{ width:100%; }
 
 .menu-btn{ color:var(--text); font-size:22px; cursor:pointer; display:none; }
 
 .scroll-up-btn{
-    position:fixed; height:44px; width:44px; right:30px; bottom:10px;
+    position:fixed; height:48px; width:48px; right:30px; bottom:10px;
     display:flex; align-items:center; justify-content:center;
-    background:var(--surface-2); border:1px solid var(--border);
-    color:var(--text); z-index:999; font-size:18px; border-radius:50%;
-    cursor:pointer; opacity:0; pointer-events:none; transition:all .3s ease;
+    z-index:999; cursor:pointer; opacity:0; pointer-events:none;
+    transition:opacity .3s ease, bottom .3s ease;
+    border-radius:50%;
+    background:conic-gradient(var(--accent-b) calc(var(--p,0) * 1%), var(--surface-2) 0);
 }
+.scroll-up-btn::before{
+    content:""; position:absolute; inset:3px; border-radius:50%; background:var(--bg-alt);
+}
+.scroll-up-btn i{ position:relative; z-index:1; color:var(--text); font-size:17px; }
 .scroll-up-btn.show{ bottom:30px; opacity:1; pointer-events:auto; }
-.scroll-up-btn:hover{ background:var(--accent-b); }
+.scroll-up-btn:hover::before{ background:var(--accent-b); }
 
 /* ============================================================
    Hero — the one bold animated moment on the page
@@ -135,6 +158,12 @@ section .title{
         radial-gradient(60% 50% at 15% 20%, rgba(139,92,246,.20), transparent 60%),
         radial-gradient(50% 45% at 85% 75%, rgba(255,122,71,.14), transparent 60%),
         var(--bg);
+}
+.home::after{
+    content:"";
+    position:absolute; inset:0; z-index:-1; pointer-events:none;
+    background:radial-gradient(420px circle at var(--mx,50%) var(--my,30%), rgba(139,92,246,.16), transparent 65%);
+    transition:background .15s ease-out;
 }
 .home .max-width{
     width:100%; display:flex; align-items:center; gap:60px;
@@ -286,7 +315,6 @@ section .title{
     content:""; position:absolute; top:0; left:0; right:0; height:3px;
     background:var(--card-accent, var(--gradient));
 }
-.project-card:hover{ transform:translateY(-6px); border-color:var(--border); box-shadow:var(--shadow); }
 .project-card .tag{
     font-family:var(--font-mono); font-size:12px; color:var(--card-accent, var(--accent-b));
     margin-bottom:14px; display:inline-block;
@@ -362,8 +390,38 @@ footer{ background:var(--bg-alt); padding:0; border-top:1px solid var(--border);
    Motion
    ============================================================ */
 @keyframes fadeUp{ from{ opacity:0; transform:translateY(22px); } to{ opacity:1; transform:translateY(0); } }
-.reveal{ opacity:0; transform:translateY(24px); transition:opacity .6s ease, transform .6s ease; }
+.reveal{ opacity:0; transform:translateY(28px); transition:opacity .7s cubic-bezier(.16,.8,.3,1), transform .7s cubic-bezier(.16,.8,.3,1); }
 .reveal.in{ opacity:1; transform:translateY(0); }
+
+/* staggered entrance within a group — nth-child delay ladder */
+.timeline-item.reveal:nth-child(1){ transition-delay:0s; }
+.timeline-item.reveal:nth-child(2){ transition-delay:.12s; }
+.timeline-item.reveal:nth-child(3){ transition-delay:.24s; }
+
+.project-card.reveal:nth-child(1){ transition-delay:0s; }
+.project-card.reveal:nth-child(2){ transition-delay:.08s; }
+.project-card.reveal:nth-child(3){ transition-delay:.16s; }
+.project-card.reveal:nth-child(4){ transition-delay:.24s; }
+.project-card.reveal:nth-child(5){ transition-delay:.32s; }
+.project-card.reveal:nth-child(6){ transition-delay:.4s; }
+.project-card.reveal:nth-child(7){ transition-delay:.48s; }
+.project-card.reveal:nth-child(8){ transition-delay:.56s; }
+
+.edu-card.reveal:nth-child(1){ transition-delay:0s; }
+.edu-card.reveal:nth-child(2){ transition-delay:.1s; }
+.edu-card.reveal:nth-child(3){ transition-delay:.2s; }
+
+.skill-group.reveal:nth-child(1){ transition-delay:0s; }
+.skill-group.reveal:nth-child(2){ transition-delay:.08s; }
+.skill-group.reveal:nth-child(3){ transition-delay:.16s; }
+.skill-group.reveal:nth-child(4){ transition-delay:.24s; }
+
+/* project card tilt (mouse-driven, JS sets --rx/--ry) */
+.project-card{
+    transform:perspective(700px) rotateX(var(--rx,0)) rotateY(var(--ry,0)) translateY(0);
+    transition:transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+}
+.project-card:hover{ box-shadow:var(--shadow); }
 
 /* ============================================================
    Responsive
