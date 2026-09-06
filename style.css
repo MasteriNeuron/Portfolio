@@ -309,7 +309,9 @@ section .title{
 .project-card{
     position:relative; overflow:hidden;
     background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);
-    padding:30px; transition:all .3s ease;
+    padding:30px;
+    transform:perspective(700px) rotateX(var(--rx,0)) rotateY(var(--ry,0)) translateY(0);
+    transition:transform .25s ease, border-color .25s ease, box-shadow .25s ease;
 }
 .project-card::before{
     content:""; position:absolute; top:0; left:0; right:0; height:3px;
@@ -390,6 +392,7 @@ footer{ background:var(--bg-alt); padding:0; border-top:1px solid var(--border);
    Motion
    ============================================================ */
 @keyframes fadeUp{ from{ opacity:0; transform:translateY(22px); } to{ opacity:1; transform:translateY(0); } }
+@keyframes gradientShift{ 0%{ background-position:0% 50%; } 50%{ background-position:100% 50%; } 100%{ background-position:0% 50%; } }
 .reveal{ opacity:0; transform:translateY(28px); transition:opacity .7s cubic-bezier(.16,.8,.3,1), transform .7s cubic-bezier(.16,.8,.3,1); }
 .reveal.in{ opacity:1; transform:translateY(0); }
 
@@ -416,11 +419,7 @@ footer{ background:var(--bg-alt); padding:0; border-top:1px solid var(--border);
 .skill-group.reveal:nth-child(3){ transition-delay:.16s; }
 .skill-group.reveal:nth-child(4){ transition-delay:.24s; }
 
-/* project card tilt (mouse-driven, JS sets --rx/--ry) */
-.project-card{
-    transform:perspective(700px) rotateX(var(--rx,0)) rotateY(var(--ry,0)) translateY(0);
-    transition:transform .25s ease, border-color .25s ease, box-shadow .25s ease;
-}
+/* project card tilt (mouse-driven, JS sets --rx/--ry) — merged into .project-card above */
 .project-card:hover{ box-shadow:var(--shadow); }
 
 /* ============================================================
