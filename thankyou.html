@@ -3,52 +3,50 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Thank You!</title>
+  <title>Message sent — Shubham Chaudhary</title>
   <style>
-    body {
-      font-family: 'Arial', sans-serif;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      margin: 0;
-      background-color: #f0f0f0;
+    @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@400;500&display=swap');
+    *{ margin:0; padding:0; box-sizing:border-box; }
+    body{
+      font-family:'Inter', sans-serif;
+      display:flex; align-items:center; justify-content:center;
+      height:100vh; margin:0;
+      background:
+        radial-gradient(55% 45% at 20% 20%, rgba(139,92,246,.25), transparent 60%),
+        radial-gradient(50% 45% at 85% 80%, rgba(255,122,71,.18), transparent 60%),
+        #0A0F1E;
+      color:#EAF0FB;
     }
-
-    .thank-you-container {
-      text-align: center;
-      padding: 20px;
-      background-color: #ffffff;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      opacity: 0; /* initially hidden */
-      animation: fadeIn 1s forwards, wave 2s infinite; /* fade-in and wave animations */
+    .card{
+      text-align:center; padding:48px 56px; max-width:420px;
+      background:#141D33; border:1px solid rgba(231,236,245,.08);
+      border-radius:16px; box-shadow:0 20px 50px rgba(0,0,0,.35);
+      opacity:0; animation:fadeIn .6s ease forwards;
     }
-
-    @keyframes fadeIn {
-      to {
-        opacity: 1;
-      }
+    .wave{ font-size:40px; display:inline-block; animation:wave 2s ease-in-out infinite; transform-origin:70% 70%; }
+    h1{
+      font-family:'Space Grotesk', sans-serif; font-size:26px; font-weight:700;
+      margin:14px 0 10px;
+      background:linear-gradient(115deg,#FF7A47,#8B5CF6);
+      -webkit-background-clip:text; background-clip:text; color:transparent;
     }
-
-    @keyframes wave {
-      0%, 100% {
-        transform: rotate(0deg);
-      }
-      25%, 75% {
-        transform: rotate(-20deg);
-      }
-      50% {
-        transform: rotate(20deg);
-      }
+    p{ color:#93A0BD; font-size:15px; line-height:1.6; }
+    a{
+      display:inline-block; margin-top:24px; padding:11px 26px; font-size:14px; font-weight:600;
+      color:#0A0F1E; text-decoration:none; border-radius:10px;
+      background:linear-gradient(115deg,#FF7A47,#8B5CF6);
     }
+    @keyframes fadeIn{ to{ opacity:1; } }
+    @keyframes wave{ 0%,100%{ transform:rotate(0deg);} 25%,75%{ transform:rotate(-16deg);} 50%{ transform:rotate(16deg);} }
+    @media (prefers-reduced-motion: reduce){ *{ animation-duration:.01ms !important; } }
   </style>
 </head>
 <body>
-  <div class="thank-you-container">
-    <h1>Thank You!</h1>
-    <p>Your message has been received, and we'll get back to you shortly.</p>
-    <p>&#x1F44B;</p> <!-- Unicode waving hand character -->
+  <div class="card">
+    <span class="wave">👋</span>
+    <h1>Thanks for reaching out!</h1>
+    <p>Your message has been received — I'll get back to you shortly.</p>
+    <a href="index.html">Back to portfolio</a>
   </div>
 </body>
 </html>
